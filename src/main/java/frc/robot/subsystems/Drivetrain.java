@@ -20,7 +20,7 @@ public class Drivetrain extends SubsystemBase {
     private final SparkMax leftBackMotor = new SparkMax(2, MotorType.kBrushless);
     private final SparkMax rightFrontMotor = new SparkMax(3, MotorType.kBrushless);
     private final SparkMax rightBackMotor = new SparkMax(4, MotorType.kBrushless);
-
+    
     private final MotorControllerGroup m_leftMotors = new MotorControllerGroup(leftFrontMotor, leftBackMotor);
     private final MotorControllerGroup m_rightMotors = new MotorControllerGroup(rightFrontMotor, rightBackMotor);
 
@@ -49,7 +49,7 @@ public class Drivetrain extends SubsystemBase {
     
     }
 
-    /**
+  /**
    * 控制底盤進行 Tank Drive。
    *
    * @param leftSpeed  左側馬達的速度，範圍 -1.0 到 1.0。
@@ -58,6 +58,18 @@ public class Drivetrain extends SubsystemBase {
   public void tankDrive(double leftSpeed, double rightSpeed) {
     m_drive.tankDrive(leftSpeed, rightSpeed);
   }
+
+  /**
+   * 控制底盤進行 Arcade Drive。
+   *
+   * @param speed    前進/後退的速度，範圍 -1.0 到 1.0。
+   * @param rotation 轉向的速度，範圍 -1.0 到 1.0。
+   */
+  public void arcadeDrive(double speed, double rotation) {
+    // 將輸入傳給 DifferentialDrive 的 arcadeDrive 方法
+    m_drive.arcadeDrive(speed, rotation);
+  }
+
 
   /**
    * 停止底盤所有馬達。

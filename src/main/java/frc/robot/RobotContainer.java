@@ -31,8 +31,8 @@ public class RobotContainer {
     m_drivetrain.setDefaultCommand(
       new DefaultDrive(
         m_drivetrain,
-        () -> m_driverController.getLeftY(), // Left joystick Y-axis for left side speed
-        () -> m_driverController.getRightY() // Right joystick Y-axis for right side speed
+        () -> m_driverController.getRightY(), // Left joystick Y-axis for speed
+        () -> m_driverController.getLeftX() // Right joystick X-axis for rotation
       )
     );
   }

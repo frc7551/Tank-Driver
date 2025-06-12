@@ -6,20 +6,20 @@ import java.util.function.DoubleSupplier;
 
 public class DefaultDrive extends Command {
     private final Drivetrain m_drivetrain;
-    private final DoubleSupplier m_leftSpeedSupplier;
-    private final DoubleSupplier m_rightSpeedSupplier;
+    private final DoubleSupplier m_speedSupplier;
+    private final DoubleSupplier m_rotationSupplier;
 
     /**
    * 創建一個 DefaultDrive 指令。
    *
    * @param drivetrain       Drivetrain 子系統實例。
-   * @param leftSpeedSupplier  提供左側速度的函數。
-   * @param rightSpeedSupplier 提供右側速度的函數。
+   * @param speedSupplier  供應器，用於獲取左右馬達的速度。
+   * @param rotationSupplier  供應器，用於獲取旋轉速度。
    */
-  public DefaultDrive(Drivetrain drivetrain, DoubleSupplier leftSpeedSupplier, DoubleSupplier rightSpeedSupplier) {
+  public DefaultDrive(Drivetrain drivetrain, DoubleSupplier speedSupplier, DoubleSupplier rotationSupplier) {
     m_drivetrain = drivetrain;
-    m_leftSpeedSupplier = leftSpeedSupplier;
-    m_rightSpeedSupplier = rightSpeedSupplier;
+    m_speedSupplier = speedSupplier;
+    m_rotationSupplier = rotationSupplier;
 
     // 將 Drivetrain 子系統作為要求（requirement）
     // 這確保在 DefaultDrive 執行時，沒有其他指令可以控制 Drivetrain
@@ -30,11 +30,11 @@ public class DefaultDrive extends Command {
    @Override
    public void execute() {
      // 從供應器獲取左右馬達的速度值
-     double leftSpeed = m_leftSpeedSupplier.getAsDouble();
-     double rightSpeed = m_rightSpeedSupplier.getAsDouble();
+     double speed = m_speedSupplier.getAsDouble();
+     double rotation = m_rotationSupplier.getAsDouble();
  
      // 將這些值傳遞給底盤子系統
-     m_drivetrain.tankDrive(leftSpeed, rightSpeed);
+     m_drivetrain.arcadeDrive(speed, rotation);
    }
 
    // 指令結束時呼叫
