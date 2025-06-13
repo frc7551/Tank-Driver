@@ -8,6 +8,7 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.DefaultDrive;
 import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
@@ -31,8 +32,8 @@ public class RobotContainer {
     m_drivetrain.setDefaultCommand(
       new DefaultDrive(
         m_drivetrain,
-        () -> m_driverController.getRightY(), // Right joystick Y-axis for speed
-        () -> m_driverController.getLeftX() // Left joystick X-axis for rotation
+        () -> m_driverController.getRightY() * OperatorConstants.kDriveSpeedMultiplier, // Right joystick Y-axis for speed
+        () -> m_driverController.getLeftX() * OperatorConstants.kTurnSpeedMultiplier// Left joystick X-axis for rotation
       )
     );
   }
@@ -46,7 +47,9 @@ public class RobotContainer {
    * PS4} controllers or {@link edu.wpi.first.wpilibj2.command.button.CommandJoystick Flight
    * joysticks}.
    */
-  private void configureBindings() {}
+  private void configureBindings() {
+      m_driverController.a().onTrue(Commands.runOnce(m_drivetrain::stop));
+    }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.

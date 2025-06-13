@@ -70,12 +70,11 @@ public class Drivetrain extends SubsystemBase {
     m_drive.arcadeDrive(speed, rotation);
   }
 
-
   /**
    * 停止底盤所有馬達。
    */
   public void stop() {
-    m_drive.tankDrive(0, 0);
+    m_drive.arcadeDrive(0, 0);
   }
 
   @Override

@@ -15,5 +15,8 @@ package frc.robot;
 public final class Constants {
   public static class OperatorConstants {
     public static final int kXboxControllerPort = 0;
+
+    public static final double kDriveSpeedMultiplier = 0.5; // Speed multiplier for driving commands
+    public static final double kTurnSpeedMultiplier = 0.5; // Speed multiplier for turning commands
   }
 }
