@@ -28,7 +28,7 @@ public class Drivetrain extends SubsystemBase {
 
     public Drivetrain() {
         var driveLeftMotorsConfig = new SparkMaxConfig()
-            .idleMode(IdleMode.kBrake).inverted(false).smartCurrentLimit(40);
+            .idleMode(IdleMode.kCoast).inverted(false).smartCurrentLimit(40);
         if(leftFrontMotor.configure(driveLeftMotorsConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters) != REVLibError.kOk) {
             throw new RuntimeException("Failed to configure left front motor");
         }
@@ -37,7 +37,7 @@ public class Drivetrain extends SubsystemBase {
         }
 
         var driveRightMotorsConfig = new SparkMaxConfig()
-            .idleMode(IdleMode.kBrake).inverted(true).smartCurrentLimit(40);
+            .idleMode(IdleMode.kCoast).inverted(true).smartCurrentLimit(40);
         if(rightFrontMotor.configure(driveRightMotorsConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters) != REVLibError.kOk) {
             throw new RuntimeException("Failed to configure right front motor");
         }
