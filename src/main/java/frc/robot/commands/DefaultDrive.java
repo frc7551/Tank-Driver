@@ -118,5 +118,7 @@ public class DefaultDrive extends Command {
   public void end(boolean interrupted) {
     // 當指令結束或被中斷時，停止底盤
     m_drivetrain.stop();
+    m_currentSpeed = 0.0;
+    m_currentRotation = 0.0;
   }
 }
